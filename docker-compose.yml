@@ -1,0 +1,10 @@
+services:
+  angular-ui:
+    image: node:16
+    ports:
+      - 8080:4200
+    volumes:
+      - ./:/usr/src/app
+    entrypoint: ["npm", "run", "ng", "serve", "--", "--host", "0.0.0.0", "--port", "4200"]
+    working_dir: /usr/src/app
+version: '3'
