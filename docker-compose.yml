@@ -1,5 +1,6 @@
 # Startup the Angular development server in a node container.  Changes to code will be polled periodically and should
-# be available almost immediately in the browser.
+# be available almost immediately in the browser.  The latest stable version of the engine will be started on port 8080
+# so UI features can be tested against it.
 
 services:
   angular-dev:
@@ -10,5 +11,10 @@ services:
       - ./:/app
     entrypoint: ["npm", "run", "ng", "serve", "--", "--host", "0.0.0.0", "--port", "4200", "--poll", "1000"]
     working_dir: /app
+
+  engine-stable:
+    image: ghcr.io/game-stats/game-stats-engine:main
+    ports:
+      - 8080:8080
 
 version: '3'
