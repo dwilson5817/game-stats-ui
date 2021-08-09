@@ -1,10 +1,14 @@
+# Startup the Angular development server in a node container.  Changes to code will be polled periodically and should
+# be available almost immediately in the browser.
+
 services:
-  angular-ui:
+  angular-dev:
     image: node:16
     ports:
-      - 8080:4200
+      - 80:4200
     volumes:
-      - ./:/usr/src/app
-    entrypoint: ["npm", "run", "ng", "serve", "--", "--host", "0.0.0.0", "--port", "4200"]
-    working_dir: /usr/src/app
+      - ./:/app
+    entrypoint: ["npm", "run", "ng", "serve", "--", "--host", "0.0.0.0", "--port", "4200", "--poll", "1000"]
+    working_dir: /app
+
 version: '3'
